@@ -3,7 +3,7 @@
 class Solution:
     def climbStairs(self, n: int) -> int:
 
-        # Approach One Recursion
+        # Approach One Recursion (Time complexity : O(2^n ). Size of recursion tree will be 2^n.)
         def distinctWays(n):
             if n == 0: return 1
             if n < 0: return 0
@@ -12,7 +12,7 @@ class Solution:
             return stepOne + stepTwo
         return distinctWays(n)
 
-        # Recursion + DP
+        # Recursion + DP (Time complexity : O(n). Single loop up to n.)
         dp = [-1] * (n+1)
         def distinctWays(n):
             if n == 0: return 1
