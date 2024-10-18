@@ -56,3 +56,39 @@ class Solution:
                 # Store the result
                 dp[ind][prev+1] = lisLen
         return dp[0][0]
+
+
+
+    # Approach One (Recursion) Variation
+        def lis(ind, prev, n):
+            if ind == n: return 0
+
+            # pick condition
+            pick = 0
+            if prev == -1 or nums[ind] > nums[prev]:
+                pick = 1 + lis(ind+1, ind, n)
+
+            # not pick condition
+            notPick = 0 + lis(ind+1, prev, n)
+
+            return max(pick, notPick)
+        return lis(0,-1,len(nums))
+
+    # Approach Two (Recursion + Dp) Variation
+        n = len(nums)
+        dp = [[-1]*(n+1) for _ in range(n+1)]
+        def lis(ind, prev, n):
+            if ind == n: return 0
+            if dp[n][prev] != -1: return dp[n][prev]
+
+            # pick condition
+            pick = 0
+            if prev == -1 or nums[ind] > nums[prev]:
+                pick = 1 + lis(ind+1, ind, n)
+
+            # not pick condition
+            notPick = 0 + lis(ind+1, prev, n)
+
+            dp[n][prev] = max(pick, notPick)
+            return dp[n][prev]
+        return lis(0,-1,len(nums))
